@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Lobby.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends HSlider
+
+func _ready():
+  $MaxValue.text = str(max_value)
+
+func _process(delta):
+  $Value.text = str(value)
+"
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btns" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -84.0
+margin_right = 84.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Btns"]
+margin_top = 58.0
+margin_right = 168.0
+margin_bottom = 89.0
+text = "Default PORT: 6969
+Max Players: 8"
+align = 1
+
+[node name="IP" type="LineEdit" parent="Btns"]
+margin_top = 99.0
+margin_right = 168.0
+margin_bottom = 123.0
+align = 1
+placeholder_text = "IP"
+caret_blink = true
+
+[node name="Port" type="LineEdit" parent="Btns"]
+margin_top = 133.0
+margin_right = 168.0
+margin_bottom = 157.0
+align = 1
+max_length = 4
+placeholder_text = "Port"
+caret_blink = true
+
+[node name="Name" type="LineEdit" parent="Btns"]
+margin_top = 167.0
+margin_right = 168.0
+margin_bottom = 191.0
+text = "unknowplayer"
+align = 1
+max_length = 12
+placeholder_text = "Nickname"
+caret_blink = true
+
+[node name="Host" type="Button" parent="Btns"]
+margin_top = 201.0
+margin_right = 168.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 0, 32 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Join" type="Button" parent="Btns"]
+margin_top = 243.0
+margin_right = 168.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 0, 32 )
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label2" type="Label" parent="Btns"]
+margin_top = 285.0
+margin_right = 168.0
+margin_bottom = 299.0
+text = "Sensitivity"
+align = 1
+
+[node name="Sensitivity" type="HSlider" parent="Btns"]
+margin_top = 309.0
+margin_right = 168.0
+margin_bottom = 325.0
+min_value = 0.01
+max_value = 2.0
+step = 0.01
+value = 0.1
+script = SubResource( 1 )
+
+[node name="Value" type="Label" parent="Btns/Sensitivity"]
+anchor_bottom = 1.0
+margin_left = -52.0
+margin_right = -12.0
+text = "0.1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxValue" type="Label" parent="Btns/Sensitivity"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_right = 52.0
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 192.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Btns/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Btns/Join" to="." method="_on_Join_pressed"]
+[connection signal="value_changed" from="Btns/Sensitivity" to="." method="_on_Sensitivity_value_changed"]
