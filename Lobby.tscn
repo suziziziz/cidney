@@ -46,6 +46,7 @@ align = 1
 margin_top = 99.0
 margin_right = 168.0
 margin_bottom = 123.0
+text = "127.0.0.1"
 align = 1
 placeholder_text = "IP"
 caret_blink = true
